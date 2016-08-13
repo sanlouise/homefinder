@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PropertyView extends Component {
+class DetailView extends Component {
  
   render() {
     var property = this.props.property;
@@ -58,7 +58,7 @@ class PropertyView extends Component {
         <Image style={styles.image}
             source={{uri: property.img_url}} />
         <View style={styles.heading}>
-          <Text style={styles.price}>£{price}</Text>
+          <Text style={styles.price}>{price}</Text>
           <Text style={styles.title}>{property.title}</Text>
           <View style={styles.separator}/>
         </View>
@@ -69,4 +69,4 @@ class PropertyView extends Component {
   }
 }
 
-module.exports = PropertyView;
+module.exports = DetailView;
