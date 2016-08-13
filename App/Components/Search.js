@@ -14,12 +14,12 @@ import {
 const styles = StyleSheet.create({
 
   title: {
-    fontSize: 40,
+    fontSize: 45,
     textAlign: 'center',
     color: '#d81b60'
   },
   undertitle: {
-    marginBottom: 90,
+    marginBottom: 95,
     fontSize: 45,
     textAlign: 'center',
     color: '#d81b60'
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderColor: '#d81b60',
     borderWidth: 1,
     borderRadius: 4,
-    marginBottom: 30,
+    marginBottom: 20,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
@@ -71,6 +71,12 @@ const styles = StyleSheet.create({
     color: '#d81b60',
     backgroundColor: 'white',
     justifyContent: 'center'
+  },
+  normal: {
+    color: 'white',
+    fontSize: 22,
+    textAlign: 'center',
+    marginBottom: 20
   }
 });
 
@@ -174,8 +180,12 @@ class Search extends Component {
             </TouchableHighlight>
           </View>
 
+          <Text style={styles.normal}>
+            or
+          </Text>
+
           <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
-            <Text style={styles.buttonText}>Location</Text>
+            <Text style={styles.buttonText}>Search Nearby Homes</Text>
           </TouchableHighlight>
           
           {spinner}
