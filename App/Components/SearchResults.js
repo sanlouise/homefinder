@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DetailView from './DetailView';
 
 import {
   StyleSheet,
@@ -49,8 +50,14 @@ class SearchResults extends Component {
     };
   }
 
-  rowPressed(propertyGuid) {
-  	var property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+	rowPressed(propertyGuid) {
+	  var property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+	 
+	  this.props.navigator.push({
+	    title: "Your New Home?",
+	    component: DetailView,
+	    passProps: {property: property}
+	  });
 	}
  
 	renderRow(rowData, sectionID, rowID) {
