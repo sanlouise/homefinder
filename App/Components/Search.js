@@ -85,7 +85,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
       country: 'uk',
       pretty: '1',
       encoding: 'json',
-      listing_type: 'buy',
+      listing_type: 'rent',
       action: 'search_listings',
       page: pageNumber
   };
