@@ -6,7 +6,7 @@ import {
   TextInput,
   View,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   Image
 } from 'react-native';
 
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 });
 
 function urlForQueryAndPage(key, value, pageNumber) {
-  var data = {
+  let data = {
       country: 'uk',
       pretty: '1',
       encoding: 'json',
@@ -84,7 +84,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
   };
   data[key] = value;
  
-  var querystring = Object.keys(data)
+  let querystring = Object.keys(data)
     .map(key => key + '=' + encodeURIComponent(data[key]))
     .join('&');
  
@@ -114,14 +114,33 @@ class Search extends Component {
   }
 
   _executeQuery(query) {
-  console.log(query);
-  this.setState({ isLoading: true });
+    console.log(query);
+    this.setState({ isLoading: true });
+    fetch(query)
+    .then(response => response.json())
+    .then(json => this._handleResponse(json.response))
+    .catch(error =>
+       this.setState({
+        isLoading: false,
+        message: 'Oops, an error occurred. ' + error
+     }));
+  }
+
+  _handleResponse(response) {
+    this.setState({ isLoading: false , message: '' });
+    if (response.application_response_code.substr(0, 1) === '1') {
+      console.log('Properties found: ' + response.listings.length);
+    } else {
+      this.setState({ message: 'Location not recognized; please try again.'});
+    }
   }
    
 
   render() {
-    var spinner = this.state.isLoading ? ( <ActivityIndicatorIOS
-        size='large'/> ) :
+    const spinner = this.state.isLoading ? ( 
+      <ActivityIndicator 
+        color="#fff"
+        size="large" /> ) :
     ( <View/>);
 
     return (
