@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   },
   heading: {
     backgroundColor: '#fce4ec',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: 20
   },
   separator: {
     height: 1,
@@ -29,7 +30,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     margin: 5,
-    color: '#48BBEC',
     textAlign: 'center',
     color: '#d81b60'
   },
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 18,
-    margin: 5,
-    color: '#656565'
+    margin: 20,
+    color: '#656565',
+    justifyContent: 'center'
   }
 });
 

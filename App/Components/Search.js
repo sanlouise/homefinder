@@ -207,7 +207,7 @@ class Search extends Component {
           
           {spinner}
 
-          <Text style={styles.description}>{this.state.message}</Text>
+          <Text style={styles.normal}>{this.state.message}</Text>
 
         </View>
       </Image>

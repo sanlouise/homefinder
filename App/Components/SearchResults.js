@@ -65,7 +65,7 @@ class SearchResults extends Component {
 	 
 	  return (
 	    <TouchableHighlight onPress={() => this.rowPressed(rowData.title)}
-	        underlayColor='#dddddd'>
+	        underlayColor='#fce4ec'>
 	      <View>
 	        <View style={styles.rowContainer}>
 	          <Image style={styles.thumb} source={{ uri: rowData.img_url }} />
