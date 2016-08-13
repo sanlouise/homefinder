@@ -13,26 +13,25 @@ import {
 const styles = StyleSheet.create({
 
   title: {
-    fontSize: 35,
+    fontSize: 40,
     textAlign: 'center',
     color: '#d81b60'
   },
   undertitle: {
     marginBottom: 90,
-    fontSize: 40,
+    fontSize: 45,
     textAlign: 'center',
     color: '#d81b60'
   },
   container: {
     flex: 1,
-    // remove width and height to override fixed static size
     width: null,
     height: null,
   },
   contentcontainer: {
     justifyContent: 'center',
-    marginTop: 250,
-    padding: 20,
+    marginTop: 210,
+    padding: 40,
     width: null,
     height: null,
     backgroundColor:'transparent'
@@ -48,26 +47,26 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    height: 36,
+    height: 46,
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#d81b60',
     borderColor: '#d81b60',
     borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
+    borderRadius: 4,
+    marginBottom: 30,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
   searchInput: {
-    height: 36,
-    padding: 4,
+    height: 46,
+    padding: 10,
     marginRight: 5,
     flex: 4,
     fontSize: 18,
     borderWidth: 1,
     borderColor: '#d81b60',
-    borderRadius: 8,
+    borderRadius: 4,
     color: '#d81b60',
     backgroundColor: 'white',
     justifyContent: 'center'
@@ -85,41 +84,48 @@ class Search extends Component {
     };
   }
 
+  onSearchInputChange(event) {
+    console.log('onSearchInputChange');
+    this.setState({ searchString: event.nativeEvent.text });
+    console.log(this.state.searchString);
+  }
+
   render() {
-    var spinner = this.state.isLoading ?
-    ( <ActivityIndicatorIOS
+    var spinner = this.state.isLoading ? ( <ActivityIndicatorIOS
         size='large'/> ) :
     ( <View/>);
+
     return (
       <Image source={require('./Common/home-finder.gif')} style={styles.container}>
         <View style={styles.contentcontainer}>
+
           <Text style={styles.title}>
             Find your
           </Text>
+
           <Text style={styles.undertitle}>
             Dream Home
           </Text>
-
 
           <View style={styles.flowRight}>
             <TextInput
               style={styles.searchInput}
               value={this.state.searchString}
-              placeholder='Search via name or postcode'/>
-            <TouchableHighlight style={styles.button}
-                underlayColor='#99d9f4'
-                >
+              onChange={this.onSearchInputChange.bind(this)}
+              placeholder='Search a city or ZIP code'/>
+            <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
               <Text style={styles.buttonText}>Go</Text>
             </TouchableHighlight>
           </View>
-          <TouchableHighlight style={styles.button}
-              underlayColor='#99d9f4'
-              >
+
+          <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
             <Text style={styles.buttonText}>Location</Text>
           </TouchableHighlight>
           
           {spinner}
+
           <Text style={styles.description}>{this.state.message}</Text>
+
         </View>
       </Image>
     );
