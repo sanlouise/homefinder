@@ -13,8 +13,8 @@ import {
 
 const styles = StyleSheet.create({
   thumb: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     marginRight: 10
   },
   textContainer: {
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: '#dddddd'
+    backgroundColor: '#d81b60'
   },
   price: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#48BBEC'
+    color: '#d81b60'
   },
   title: {
     fontSize: 20,
@@ -44,14 +44,14 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     var dataSource = new ListView.DataSource(
-      {rowHasChanged: (r1, r2) => r1.guid !== r2.guid});
+      {rowHasChanged: (r1, r2) => r1.title !== r2.title});
     this.state = {
       dataSource: dataSource.cloneWithRows(this.props.listings)
     };
   }
 
-	rowPressed(propertyGuid) {
-	  var property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+	rowPressed(propertyTitle) {
+	  var property = this.props.listings.filter(prop => prop.title === propertyTitle)[0];
 	 
 	  this.props.navigator.push({
 	    title: "Your New Home?",
@@ -64,7 +64,7 @@ class SearchResults extends Component {
 	  var price = rowData.price_formatted.split(' ')[0];
 	 
 	  return (
-	    <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)}
+	    <TouchableHighlight onPress={() => this.rowPressed(rowData.title)}
 	        underlayColor='#dddddd'>
 	      <View>
 	        <View style={styles.rowContainer}>
@@ -72,7 +72,7 @@ class SearchResults extends Component {
 	          <View  style={styles.textContainer}>
 	            <Text style={styles.price}>{price}</Text>
 	            <Text style={styles.title}
-	                  numberOfLines={1}>{rowData.title}</Text>
+	                  numberOfLines={3}>{rowData.title}</Text>
 	          </View>
 	        </View>
 	        <View style={styles.separator}/>
