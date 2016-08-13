@@ -12,11 +12,16 @@ import {
 
 const styles = StyleSheet.create({
 
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
+  title: {
+    fontSize: 35,
     textAlign: 'center',
-    color: '#656565'
+    color: '#d81b60'
+  },
+  undertitle: {
+    marginBottom: 90,
+    fontSize: 40,
+    textAlign: 'center',
+    color: '#d81b60'
   },
   container: {
     flex: 1,
@@ -24,13 +29,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
-
   contentcontainer: {
     justifyContent: 'center',
-    marginTop: 50,
+    marginTop: 250,
     padding: 20,
     width: null,
-    height: null
+    height: null,
+    backgroundColor:'transparent'
   },
   flowRight: {
     flexDirection: 'row',
@@ -46,8 +51,8 @@ const styles = StyleSheet.create({
     height: 36,
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
+    backgroundColor: '#d81b60',
+    borderColor: '#d81b60',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
@@ -61,9 +66,11 @@ const styles = StyleSheet.create({
     flex: 4,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#48BBEC',
+    borderColor: '#d81b60',
     borderRadius: 8,
-    color: '#48BBEC'
+    color: '#d81b60',
+    backgroundColor: 'white',
+    justifyContent: 'center'
   }
 });
 
@@ -72,7 +79,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: 'london',
+      searchString: 'New York, San Francisco..',
       isLoading: false,
       message: ''
     };
@@ -86,12 +93,14 @@ class Search extends Component {
     return (
       <Image source={require('./Common/home-finder.gif')} style={styles.container}>
         <View style={styles.contentcontainer}>
-          <Text style={styles.description}>
-            Find your dream home!
+          <Text style={styles.title}>
+            Find your
           </Text>
-          <Text style={styles.description}>
-            Search by place-name, postcode or search near your location.
+          <Text style={styles.undertitle}>
+            Dream Home
           </Text>
+
+
           <View style={styles.flowRight}>
             <TextInput
               style={styles.searchInput}
