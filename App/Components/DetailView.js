@@ -13,26 +13,31 @@ const styles = StyleSheet.create({
     marginTop: 65
   },
   heading: {
-    backgroundColor: '#F8F8F8',
+    backgroundColor: '#fce4ec',
+    justifyContent: 'center'
   },
   separator: {
     height: 1,
-    backgroundColor: '#DDDDDD'
+    backgroundColor: '#fce4ec'
   },
   image: {
-    width: 400,
-    height: 300
+    width: 430,
+    height: 300,
+    justifyContent: 'center'
   },
   price: {
     fontSize: 25,
     fontWeight: 'bold',
     margin: 5,
-    color: '#48BBEC'
+    color: '#48BBEC',
+    textAlign: 'center',
+    color: '#d81b60'
   },
   title: {
     fontSize: 20,
     margin: 5,
-    color: '#656565'
+    color: '#d81b60',
+    textAlign: 'center'
   },
   description: {
     fontSize: 18,
@@ -44,14 +49,9 @@ const styles = StyleSheet.create({
 class DetailView extends Component {
  
   render() {
-    var property = this.props.property;
-    var stats = property.bedroom_number + ' bed ' + property.property_type;
-    if (property.bathroom_number) {
-      stats += ', ' + property.bathroom_number + ' ' + (property.bathroom_number > 1
-        ? 'bathrooms' : 'bathroom');
-    }
+    const property = this.props.property;
  
-    var price = property.price_formatted.split(' ')[0];
+    const price = property.price_formatted.split(' ')[0];
  
     return (
       <View style={styles.container}>
@@ -62,7 +62,6 @@ class DetailView extends Component {
           <Text style={styles.title}>{property.title}</Text>
           <View style={styles.separator}/>
         </View>
-        <Text style={styles.description}>{stats}</Text>
         <Text style={styles.description}>{property.summary}</Text>
       </View>
     );
