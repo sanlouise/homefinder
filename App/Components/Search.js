@@ -19,9 +19,18 @@ const styles = StyleSheet.create({
     color: '#656565'
   },
   container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: 'center'
+    flex: 1,
+    // remove width and height to override fixed static size
+    width: null,
+    height: null,
+  },
+
+  contentcontainer: {
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
+    width: null,
+    height: null
   },
   flowRight: {
     flexDirection: 'row',
@@ -75,33 +84,35 @@ class Search extends Component {
         size='large'/> ) :
     ( <View/>);
     return (
-      <View style={styles.container}>
-        <Text style={styles.description}>
-          Search for houses to buy!
-        </Text>
-        <Text style={styles.description}>
-          Search by place-name, postcode or search near your location.
-        </Text>
-        <View style={styles.flowRight}>
-          <TextInput
-            style={styles.searchInput}
-            value={this.state.searchString}
-            placeholder='Search via name or postcode'/>
+      <Image source={require('./Common/home-finder.gif')} style={styles.container}>
+        <View style={styles.contentcontainer}>
+          <Text style={styles.description}>
+            Find your dream home!
+          </Text>
+          <Text style={styles.description}>
+            Search by place-name, postcode or search near your location.
+          </Text>
+          <View style={styles.flowRight}>
+            <TextInput
+              style={styles.searchInput}
+              value={this.state.searchString}
+              placeholder='Search via name or postcode'/>
+            <TouchableHighlight style={styles.button}
+                underlayColor='#99d9f4'
+                >
+              <Text style={styles.buttonText}>Go</Text>
+            </TouchableHighlight>
+          </View>
           <TouchableHighlight style={styles.button}
               underlayColor='#99d9f4'
               >
-            <Text style={styles.buttonText}>Go</Text>
+            <Text style={styles.buttonText}>Location</Text>
           </TouchableHighlight>
+          
+          {spinner}
+          <Text style={styles.description}>{this.state.message}</Text>
         </View>
-        <TouchableHighlight style={styles.button}
-            underlayColor='#99d9f4'
-            >
-          <Text style={styles.buttonText}>Location</Text>
-        </TouchableHighlight>
-        
-        {spinner}
-        <Text style={styles.description}>{this.state.message}</Text>
-      </View>
+      </Image>
     );
   }
 }
