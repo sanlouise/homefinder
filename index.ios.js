@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import Search from './App/Components/Search';
 import {
@@ -14,15 +8,17 @@ import {
   NavigatorIOS
 } from 'react-native';
 
+
 class HomeFinder extends Component {
   render() {
     return (
       <NavigatorIOS
-        style={styles.container}
+        style={styles.wrapper}
         initialRoute={{
           title: 'Home Finder',
           component: Search,
-        }}/>
+        }}
+      />
     );
   }
 }
@@ -33,6 +29,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  wrapper: {
+    flex: 1,
   },
   welcome: {
     fontSize: 25,
