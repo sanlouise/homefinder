@@ -142,8 +142,23 @@ class Search extends Component {
       passProps: {listings: response.listings}
     });
     } else {
-      this.setState({ message: 'Location not recognized; please try again.'});
+      this.setState({ message: 'Oops, something went wrong.'});
     }
+  }
+
+  onLocationPressed() {
+  navigator.geolocation.getCurrentPosition(
+    location => {
+      var search = location.coords.latitude + ',' + location.coords.longitude;
+      this.setState({ searchString: search });
+      var query = urlForQueryAndPage('centre_point', search, 1);
+      this._executeQuery(query);
+    },
+    error => {
+      this.setState({
+        message: 'Oops, something went wrong: ' + error
+      });
+    });
   }
    
   render() {
@@ -184,7 +199,9 @@ class Search extends Component {
             or
           </Text>
 
-          <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
+          <TouchableHighlight style={styles.button} 
+            underlayColor='#99d9f4'
+            onPress={this.onLocationPressed.bind(this)}>
             <Text style={styles.buttonText}>Search Nearby Homes</Text>
           </TouchableHighlight>
           
