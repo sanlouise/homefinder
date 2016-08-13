@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchResults from './SearchResults';
 
 import {
   StyleSheet,
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
 });
 
 function urlForQueryAndPage(key, value, pageNumber) {
-  let data = {
+  var data = {
       country: 'uk',
       pretty: '1',
       encoding: 'json',
@@ -84,7 +85,7 @@ function urlForQueryAndPage(key, value, pageNumber) {
   };
   data[key] = value;
  
-  let querystring = Object.keys(data)
+  var querystring = Object.keys(data)
     .map(key => key + '=' + encodeURIComponent(data[key]))
     .join('&');
  
@@ -130,12 +131,12 @@ class Search extends Component {
     this.setState({ isLoading: false , message: '' });
     if (response.application_response_code.substr(0, 1) === '1') {
       this.props.navigator.push({
-        title: 'Results',
-        component: SearchResults,
-        passProps: {listings: response.listings}
-      });
+      title: 'Results',
+      component: SearchResults,
+      passProps: {listings: response.listings}
+    });
     } else {
-      this.setState({ message: 'We could not find properties for this location.'});
+      this.setState({ message: 'Location not recognized; please try again.'});
     }
   }
    
