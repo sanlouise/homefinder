@@ -48,6 +48,10 @@ class SearchResults extends Component {
       dataSource: dataSource.cloneWithRows(this.props.listings)
     };
   }
+
+  rowPressed(propertyGuid) {
+  	var property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+	}
  
 	renderRow(rowData, sectionID, rowID) {
 	  var price = rowData.price_formatted.split(' ')[0];
