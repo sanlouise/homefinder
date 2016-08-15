@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     textAlign: 'center',
-    marginBottom: 20
+    marginBottom: 15
   }
 });
 
@@ -146,21 +146,6 @@ class Search extends Component {
     }
   }
 
-  onLocationPressed() {
-  navigator.geolocation.getCurrentPosition(
-    location => {
-      var search = location.coords.latitude + ',' + location.coords.longitude;
-      this.setState({ searchString: search });
-      var query = urlForQueryAndPage('centre_point', search, 1);
-      this._executeQuery(query);
-    },
-    error => {
-      this.setState({
-        message: 'Oops, something went wrong: ' + error
-      });
-    });
-  }
-   
   render() {
     const spinner = this.state.isLoading ? ( 
       <ActivityIndicator 
@@ -185,7 +170,7 @@ class Search extends Component {
               style={styles.searchInput}
               value={this.state.searchString}
               onChange={this.onSearchInputChange.bind(this)}
-              placeholder='Search a city or ZIP code'/>
+              placeholder='Search a city or ZIP..'/>
             <TouchableHighlight 
               style={styles.button} 
               underlayColor='#99d9f4'
@@ -196,14 +181,12 @@ class Search extends Component {
           </View>
 
           <Text style={styles.normal}>
-            or
+            Now available for
           </Text>
 
-          <TouchableHighlight style={styles.button} 
-            underlayColor='#99d9f4'
-            onPress={this.onLocationPressed.bind(this)}>
-            <Text style={styles.buttonText}>Search Nearby Homes</Text>
-          </TouchableHighlight>
+          <Text style={styles.normal}>
+            the United Kingdom
+          </Text>
           
           {spinner}
 
